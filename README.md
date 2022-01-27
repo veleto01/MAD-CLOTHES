@@ -6,7 +6,6 @@
 - **Funcionalidad pública** (Los usuarios no registrados podrán realizar diferentes acciones):
 
   - Navegación libre a través de la web pudiendo ver ropa.
-  - Comprar como invitado.
   - Preguntas frecuentes.
   - Ver stock.
   - Atención al cliente.
@@ -20,7 +19,9 @@
   - Bonos descuento.
 
 - **Entidades principales**:
-  - Cliente: Persona que navega por la web, que puede comprar o no productos de la web, y en caso de comprar debe rellenar los campos de informacion necesarios.
+  - Carrito de compra: Listado de productos guardados, pendientes de compra.
+
+  - Oferta: Promociones para productos.
   
   - Pedido:  Entidad la cual es un resumen que incluye los productos, independientemente de los  que el cliente haya comprado, junto con el precio final, la direccion de entrega y la fecha aproximada de entrega.
   
