@@ -15,16 +15,26 @@ public class Usuario {
 	
 	private String nombre;
 	private String apellidos;
-	private int telefono;
+	private String telefono;
 	private String direccion;
 	
+	public Usuario() {
+		
+	}
+	public Usuario(String n, String a,String c, String d, String t){
+		this.nombre=n;
+		this.apellidos=a;
+		this.correo=c;
+		this.direccion=d;
+		this.telefono=t;
+	}
 
 		
-	public int getTelefono() {
+	public String getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(int telefono) {
+	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
 
