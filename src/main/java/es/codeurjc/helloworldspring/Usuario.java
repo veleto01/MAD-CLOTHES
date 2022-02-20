@@ -4,12 +4,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Email;
 
 @Entity
 public class Usuario {
 	
 	
 	@Id
+	@Email
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String correo;
 	
@@ -74,5 +76,7 @@ public class Usuario {
 		return "Usuario [correo=" + correo + ", nombre=" + nombre + ", apellidos=" + apellidos + ", telefono="
 				+ telefono + ", direccion=" + direccion + "]";
 	}
+	
+	
 	
 }
