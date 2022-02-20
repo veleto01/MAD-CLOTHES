@@ -1,6 +1,5 @@
 package es.codeurjc.helloworldspring;
 
-
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -17,12 +16,12 @@ public class Oferta {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private int id;
 	
 	
 	
 	@OneToMany
-	 private List<Productos> Producto_Descuento;
+	 private List<Producto> Producto_Descuento;
 	
 	private double Descuento;
 	
@@ -30,15 +29,14 @@ public class Oferta {
 	public Oferta(){}
 	
 	public Oferta(double Descuento_Producto){
-		super();
 		this.Descuento=Descuento_Producto;
 	}
 
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -47,7 +45,7 @@ public class Oferta {
 		return Descuento;
 	}
 	
-	public void setDescuento(double descuento) {
+	public void setDescuento(float descuento) {
 		Descuento = descuento;
 	}
 	

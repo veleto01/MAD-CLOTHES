@@ -75,6 +75,4 @@ public class Usuario {
 				+ telefono + ", direccion=" + direccion + "]";
 	}
 	
-	
-	
 }
