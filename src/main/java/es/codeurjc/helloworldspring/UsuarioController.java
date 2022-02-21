@@ -26,8 +26,13 @@ public class UsuarioController {
 		usuarioRepository.save(new Usuario("Paco","Fernandez Martin","paco@gmail.com","Calle Margarita","6936352"));
 	}
 	@GetMapping("/usuario")
-	public String mostrarUsuario(Model model) {
-		model.addAttribute("Usuario",usuarioRepository.findAll());
+	public String mostrarUsuario(Model model,String correo) {
+		Usuario usuario= usuarioRepository.findByCorreo(correo);
+		model.addAttribute("Nombre",usuario.getNombre());
+		model.addAttribute("Apellidos",usuario.getApellidos());
+		model.addAttribute("Correo",usuario.getCorreo());
+		model.addAttribute("Calle",usuario.getDireccion());
+		model.addAttribute("Telefono",usuario.getTelefono());
 		return"Usuario";
 	}
 	
