@@ -12,9 +12,6 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	@OneToOne
-	private CarritoCompra carrito;
-	
 	private String correo;
 	private String nombre;
 	private String apellidos;

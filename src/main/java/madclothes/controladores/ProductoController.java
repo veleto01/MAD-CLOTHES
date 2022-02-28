@@ -71,8 +71,8 @@ public class ProductoController {
 	
 	
 	
-	
-	
+	//spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+	//spring.jpa.show-sql = true
 	
 	
 	@GetMapping("/agregarProductos")
