@@ -36,6 +36,13 @@ public class ControladorDefault {
 		return "CarritoCompra";
 	}
 	
+	@GetMapping("/gestionOferta")
+	public String gestionOferta(Model model) {
+		
+		return "gestionOferta";
+	}
+	
+	
 	
 	
 	@GetMapping("/gestionUsuario")

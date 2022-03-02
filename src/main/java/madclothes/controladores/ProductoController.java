@@ -29,15 +29,27 @@ public class ProductoController {
 	private ProductoOfertaRepository RepositoryOferta;
 
 	Producto ProductoABuscar;
-	
+
 	Producto ProductoABuscarEditar;
+
+	Producto ProductoOferta;
 
 	@PostConstruct
 	public void init() {
 		RepositorioProductos.save(new Producto("Camiseta Nike", 12, 20, 10));
-		RepositorioProductos.save(new Producto("Sudadera ADIDAS",1231245, 50, 10));
+		RepositorioProductos.save(new Producto("Sudadera ADIDAS", 1231245, 50, 10));
 		RepositorioProductos.save(new Producto("MAQUEDA", 132, 20, 10));
 		RepositoryOferta.save(new Oferta(0.5));
+
+		/*
+		 * Producto producto_prueba = new Producto("Prueba", 2, 2, 10); Oferta
+		 * oferta_prueba=new Oferta(0.5);
+		 * 
+		 * 
+		 * RepositoryOferta.save(oferta_prueba);
+		 * producto_prueba.setOferta(oferta_prueba);
+		 * RepositorioProductos.save(producto_prueba);
+		 */
 	}
 
 	// FALTA QUE SANMA HAGA EL HTML DE VER TODOS LOS PRODUCTOS
@@ -47,34 +59,21 @@ public class ProductoController {
 		return "modificarUsuario";
 	}
 
-	
-	
-
-	
-	
 	@GetMapping("/buscarCodigoEliminar")
 	public String eliminarProducto(Model model) {
 		return "buscarCodigoEliminar";
 	}
-	
+
 	@PostMapping("/eliminarProductoImplementado")
 	public String eliminarProductoImplementado(Model model, @RequestParam int codigo) {
 		ProductoABuscar = RepositorioProductos.findByCodigo(codigo);
-		if (ProductoABuscar==null) {
+		if (ProductoABuscar == null) {
 			return "/error";
 		}
 		RepositorioProductos.deleteById(ProductoABuscar.getId());
 		return "/bienvenida";
 	}
 
-	
-	
-	
-	
-	//spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-	//spring.jpa.show-sql = true
-	
-	
 	@GetMapping("/agregarProductos")
 	public String agregarProducto(Model model) {
 		return "agregarProductos";
@@ -93,14 +92,6 @@ public class ProductoController {
 		return "/bienvenida";
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
 	@GetMapping("/buscarCodigo")
 	public String buscarCodigo(Model model) {
 		return "buscarCodigo";
@@ -109,7 +100,7 @@ public class ProductoController {
 	@PostMapping("/verProductoImplementado")
 	public String verProductoImplementado(Model model, @RequestParam int codigo) {
 		ProductoABuscar = RepositorioProductos.findByCodigo(codigo);
-		if (ProductoABuscar==null) {
+		if (ProductoABuscar == null) {
 			return "/error";
 		}
 		return "/redireccion";
@@ -117,93 +108,107 @@ public class ProductoController {
 
 	@GetMapping("/mostrarProducto")
 	public String mostrarProducto(Model model) {
-		
+
 		String Nombre = ProductoABuscar.getNombre();
 		int Codigo = ProductoABuscar.getCodigo();
-		int precio =  ProductoABuscar.getPrecio();
-		int Unidades = ProductoABuscar.getUnidades();		
-		
-		model.addAttribute("Nombre",Nombre);
+		int precio = ProductoABuscar.getPrecio();
+		int Unidades = ProductoABuscar.getUnidades();
+
+		model.addAttribute("Nombre", Nombre);
 		model.addAttribute("Codigo", Codigo);
-		model.addAttribute("Precio",precio);
+		model.addAttribute("Precio", precio);
 		model.addAttribute("Unidades", Unidades);
 		return "verProducto";
 	}
-	
-	
-	
-	
+
 	@GetMapping("/buscarCodigoEditarProducto")
 	public String buscarCodigoEditarProducto(Model model) {
 		return "buscarCodigoEditarProducto";
 	}
-	
-	
-	
+
 	@PostMapping("/modificarProductoImplementado")
 	public String modificarProductoImplementado(Model model, @RequestParam int codigo) {
 		ProductoABuscarEditar = RepositorioProductos.findByCodigo(codigo);
-		if (ProductoABuscarEditar==null) {
+		if (ProductoABuscarEditar == null) {
 			return "/error";
 		}
 		return "/redireccionEditarProducto";
 	}
-	
+
 	@PostMapping("/modificarProductoImplementado2")
-	public String modificarProductoImplementado2(Model model, @RequestParam String nombre,
-			@RequestParam int precio, @RequestParam int unidades) {
+	public String modificarProductoImplementado2(Model model, @RequestParam String nombre, @RequestParam int precio,
+			@RequestParam int unidades) {
 		ProductoABuscarEditar.setNombre(nombre);
 		ProductoABuscarEditar.setPrecio(precio);
 		ProductoABuscarEditar.setUnidades(unidades);
 		RepositorioProductos.save(ProductoABuscarEditar);
 		return "/editarProducto";
 	}
-	
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	// PRODUCTOS CON OFERTA
-	// FALTA QUE SANMA HAGA LOS HTML PARA ENLAZARLOS
-	@Autowired
-	private ProductoOfertaRepository RepositorioProductosOferta;
+	// Queremos añadir una oferta a un producto
+	// Buscaremos el producto con su codigo y añadiremos la oferta, si ese codigo no
+	// exite saldrá error.
 
-	@GetMapping("/mostrarOferta")
-	public String mostrarProductosOferta(Model model) {
-		model.addAttribute("oferta", RepositorioProductosOferta.findAll());
-		return "productos/ver_productosOferta";
+	@GetMapping("/añadirOferta")
+	public String añadirOferta(Model model) {
+		return "añadirOferta";
 	}
 
-	@GetMapping("/crearOferta")
-	public String crearOferta(Model model) {
-		model.addAttribute("oferta", new Oferta());
-		return "productos/agregar_producto";
+	@PostMapping("/Oferta")
+	public String Oferta(Model model, @RequestParam int codigo, @RequestParam double descuento) {
+
+		Producto producto = RepositorioProductos.findByCodigo(codigo);
+
+		if (producto == null) {
+			return "/error";
+		} else {
+			Oferta oferta_prueba = new Oferta(descuento);
+			RepositoryOferta.save(oferta_prueba);
+			producto.setOferta(oferta_prueba);
+
+			int precio = producto.getPrecio();
+			producto.setPrecioInicial(precio);
+
+			producto.setOferta_Aplicada(descuento);
+			descuento = 1 - descuento;
+			int precioFinal = (int) (precio * descuento);
+
+			producto.setPrecio(precioFinal);
+
+			RepositorioProductos.save(producto);
+
+		}
+		return "/bienvenida";
 	}
 
-	@PostMapping("/eliminarOferta")
-	public String eliminarOferta(@ModelAttribute Oferta oferta, RedirectAttributes redirectAttrs) {
-
-		redirectAttrs.addFlashAttribute("mensaje", "Eliminado correctamente");
-
-		RepositorioProductosOferta.deleteById(oferta.getId());
-		return "redirect:/productos/mostrarOferta";
+	@GetMapping("/eliminarOferta")
+	public String eliminarOferta(Model model) {
+		return "eliminarOferta";
 	}
-	/*
-	 * @PostMapping(value = "/agregarOferta") public String
-	 * guardarOferta(@ModelAttribute Oferta oferta) {
-	 * 
-	 * if (RepositorioProductosOferta.findByDescuento(oferta.getDescuento()) !=
-	 * null) { return "redirect:/productos/agregarOferta"; }
-	 * RepositorioProductosOferta.save(oferta);
-	 * 
-	 * return "redirect:/productos/agregarOferta"; }
-	 */
+
+	@PostMapping("/OfertaEliminar")
+	public String OfertaEliminar(Model model, @RequestParam int codigo) {
+
+		Producto producto = RepositorioProductos.findByCodigo(codigo);
+
+		Oferta oferta = producto.getOferta();
+
+		if (producto == null) {
+			return "/error";
+		} else {
+
+			int precioInicial = producto.getPrecioInicial();
+
+			producto.setPrecio(precioInicial);
+
+			producto.setOferta(null);
+
+			RepositorioProductos.save(producto);
+
+			RepositoryOferta.delete(oferta);
+
+		}
+		return "/bienvenida";
+	}
 
 }

@@ -46,8 +46,8 @@ public class Oferta {
 		return Descuento;
 	}
 	
-	public void setDescuento(float descuento) {
-		Descuento = descuento;
+	public void setDescuento(double descuento) {
+		this.Descuento = descuento;
 	}
 	
 	

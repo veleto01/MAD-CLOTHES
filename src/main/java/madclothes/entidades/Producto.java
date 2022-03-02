@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 
@@ -21,10 +22,16 @@ public class Producto {
 	private int codigo;
 
 	private int precio;
+	private int precioInicial;
+	
+
 
 	private int unidades;
 	
-	@OneToOne
+	
+	private double oferta_Aplicada;
+	
+	@ManyToOne
 	private Oferta oferta;
 
 	public Producto(String nombre, int codigo, int precio, int id, int unidades) {
@@ -43,6 +50,14 @@ public class Producto {
 	}
 
 	public Producto() {
+	}
+
+	public double getOferta_Aplicada() {
+		return oferta_Aplicada;
+	}
+
+	public void setOferta_Aplicada(double oferta_Aplicada) {
+		this.oferta_Aplicada = oferta_Aplicada;
 	}
 
 	public int getUnidades() {
@@ -89,5 +104,24 @@ public class Producto {
 		this.id = id;
 	}
 
+	public Oferta getOferta() {
+		return oferta;
+	}
+
+	public void setOferta(Oferta oferta) {
+		this.oferta = oferta;
+	}
+
+	
+	
+
+	public int getPrecioInicial() {
+		return precioInicial;
+	}
+
+	public void setPrecioInicial(int precioInicial) {
+		this.precioInicial = precioInicial;
+	}
 	 
+	
 }
