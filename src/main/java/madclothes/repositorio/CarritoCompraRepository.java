@@ -1,14 +1,23 @@
 package madclothes.repositorio;
 
-import java.util.Optional;
+
+
+
+
+
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import madclothes.entidades.CarritoCompra;
-import madclothes.entidades.Usuario;
+import madclothes.entidades.Producto;
 
-public interface CarritoCompraRepository extends JpaRepository<CarritoCompra, Long> {
-	//Optional<CarritoCompra> findByUser(Optional<Usuario> usuario);
+
+public interface CarritoCompraRepository extends JpaRepository<CarritoCompra, Integer> {
+
+	
+	//CarritoCompra findByProducto(int codigo);
+	CarritoCompra findByUsuario(int telefono);
+	//CarritoCompra findById(int id);
 	
 }
 
