@@ -1,12 +1,34 @@
 package madclothes.controladores;
 
+import java.util.ArrayList;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+
+import madclothes.entidades.CarritoCompra;
+import madclothes.entidades.Producto;
+import madclothes.entidades.Usuario;
+import madclothes.repositorio.CarritoCompraRepository;
+import madclothes.repositorio.ProductoRepository;
+import madclothes.repositorio.UsuarioRepository;
 
 @Controller
 public class ControladorDefault {
+	@Autowired
+	private ProductoRepository productoRepository;
+	@Autowired
+	private CarritoCompraRepository carritoRepository;	
+	@Autowired
+	private UsuarioRepository usuarioRepository;	
 	
+	CarritoCompra CarritoCompra;
+	Usuario Usuario;
+	Producto productoaux;
 	
 	@GetMapping("/")
 	public String bienvenida(Model model) {
@@ -63,5 +85,40 @@ public class ControladorDefault {
 	@GetMapping("/verCarrito")
 	public String verCarrito(Model model) {
 		return "verCarrito";
+	}
+
+	
+	
+	@PostMapping("/borrarProductoCarrito")
+	public String borrarProductoCarrito(Model model,@RequestParam int telefono,@RequestParam int codigo) {
+		
+						
+		carritoRepository.findByUsuarioTelefono(telefono).getListaProductos().remove(productoRepository.findByCodigo(codigo));	
+		carritoRepository.save(carritoRepository.findByUsuarioTelefono(telefono));
+			
+		
+		return"/bienvenida";
+	}
+	
+	
+	
+	@PostMapping("/anadirProducto")
+	public String anadirProducto(Model model,@RequestParam int telefono,@RequestParam int codigo) {
+		productoaux = productoRepository.findByCodigo(codigo);
+		
+		Usuario=usuarioRepository.findByTelefono(telefono);
+		
+		if(carritoRepository.findByUsuarioTelefono(telefono)==null){
+		carritoRepository.save(new CarritoCompra(Usuario,productoaux));
+		}else {
+			
+			
+			
+			carritoRepository.findByUsuarioTelefono(telefono).getListaProductos().add(productoaux);
+			
+			carritoRepository.save(carritoRepository.findByUsuarioTelefono(telefono));
+		}
+		return"/bienvenida";
+		
 	}
 }
