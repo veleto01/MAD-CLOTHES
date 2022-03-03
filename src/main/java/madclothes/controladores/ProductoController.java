@@ -39,6 +39,7 @@ public class ProductoController {
 		RepositorioProductos.save(new Producto("Camiseta Nike", 12, 20, 10));
 		RepositorioProductos.save(new Producto("Sudadera ADIDAS", 1231245, 50, 10));
 		RepositorioProductos.save(new Producto("MAQUEDA", 132, 20, 10));
+		RepositorioProductos.save(new Producto("Camiseta Adidas", 1, 20, 10));
 		RepositoryOferta.save(new Oferta(0.5));
 
 		/*

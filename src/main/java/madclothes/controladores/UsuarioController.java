@@ -27,12 +27,12 @@ public class UsuarioController {
 	
 	@Autowired
 	private UsuarioRepository usuarioRepository;	
-	/*
+	
 	@Autowired
 	private CarritoCompraRepository carritoRepository;
 	@Autowired
-	private ProductoRepository RepositorioProductos;
-	*/
+	private ProductoRepository productoRepository;
+	
 	Usuario UsuarioABuscarEditar;
 	Usuario UsuarioAEliminar;
 	Usuario UsuarioAVer;
@@ -40,7 +40,8 @@ public class UsuarioController {
 	public void init(){
 		usuarioRepository.save(new Usuario("Alejandro","Panizo Jerez","alejandro@gmail.com","Calle Tulipan",6436363));
 		usuarioRepository.save(new Usuario("Mqueda","fdf fsdf","alejandro@sdf.com","Calle Tulipan",12));
-		
+		usuarioRepository.save(new Usuario("ALEX","fdf fsdf","alejandro@sdf.com","Calle Tulipan",1));
+		carritoRepository.save(new CarritoCompra(usuarioRepository.findByTelefono(1),productoRepository.findByCodigo(1)));
 		
 	}
 	

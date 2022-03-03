@@ -10,11 +10,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import madclothes.entidades.*;
 import madclothes.repositorio.*;
+import madclothes.controladores.*;
 
 public class CarritoCompraController {
 
+
 	@Autowired
 	private ProductoRepository productoRepository;
+	@Autowired
+	private CarritoCompraRepository carritoRepository;	
+	@Autowired
+	private UsuarioRepository usuarioRepository;	
+	
+	CarritoCompra CarritoCompra;
+	Usuario Usuario;
+	Producto productoaux;
 	
 	@GetMapping("/verCarrito")
 	public String verCarrito(Model model) {
@@ -46,16 +56,16 @@ public class CarritoCompraController {
 		return "borrarProductoCarrito";
 	}
 	
-	@PostMapping("/borrarProductoCarrito")
-	public String borrarPorducto(@RequestParam int codigo,Model model) {
-		for (Producto producto : CarritoCompra.getListaProductos()) {
-			if(producto.getCodigo()==codigo) {				
-				CarritoCompra.getListaProductos().remove(producto);	
-			}
-		}
+	/*@PostMapping("/borrarProductoCarrito")
+	public String borrarProductoCarrito(Model model,@RequestParam int codigo) {
+		
+		productoaux=productoRepository.findByCodigo(codigo);				
+		CarritoCompra.getListaProductos().remove(productoaux);	
+		
+			
+		
 		return"/bienvenida";
-	}
-	
+	}*/
 	
 	
 	
@@ -65,9 +75,17 @@ public class CarritoCompraController {
 	}
 	
 	@PostMapping("/anadirProducto")
-	public String añadirProducto(Model model,int codigo) {
-		Producto proTemp = productoRepository.findByCodigo(codigo);
-		CarritoCompra.getListaProductos().add(proTemp);
+	public String anadirProducto(Model model,@RequestParam int telefono,@RequestParam int codigo) {
+		/*productoaux = productoRepository.findByCodigo(codigo);
+		
+		Usuario=usuarioRepository.findByTelefono(telefono);
+		
+		if(carritoRepository.findByUsuario(telefono)==null){
+		carritoRepository.save(new CarritoCompra(Usuario,productoaux));
+		}else {
+			CarritoCompra.getListaProductos().add(productoaux);
+			carritoRepository.save(CarritoCompra);
+		}*/
 		return"/bienvenida";
 		
 	}
