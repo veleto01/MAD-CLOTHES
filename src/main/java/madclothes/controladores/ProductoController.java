@@ -181,6 +181,13 @@ public class ProductoController {
 		}
 		return "/bienvenida";
 	}
+	
+	@GetMapping("/verOfertas")
+	public String mostrarOfertas(Model model) {
+		model.addAttribute("ofertas", RepositoryOferta.findAll());
+		return "verOfertas";
+	}
+
 
 	@GetMapping("/eliminarOferta")
 	public String eliminarOferta(Model model) {
