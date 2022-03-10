@@ -13,6 +13,8 @@ import madclothes.entidades.Usuario;
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 	
 	Usuario findByTelefono(int telefono);
+	Usuario findByNombre(String nombre);
+	
 	
 	List<Usuario> findByCorreoIgnoreCase(String correo);
     }
