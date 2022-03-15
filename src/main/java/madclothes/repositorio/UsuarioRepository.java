@@ -11,7 +11,7 @@ import madclothes.entidades.User;
 import madclothes.entidades.Usuario;
 
 @Repository
-public interface UsuarioRepository extends JpaRepository<User, Integer> {
+public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 	
 	Usuario findByTelefono(int telefono);
 	Usuario findByNombre(String nombre);
