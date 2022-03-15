@@ -34,6 +34,13 @@ public class Usuario {
 		this.direccion = d;
 		this.telefono = t;
 	}
+	
+	public Usuario(String name, String encodedPassword, String... roles) {
+		this.nombre = name;
+		this.encodedPassword = encodedPassword;
+		this.roles = List.of(roles);
+	}
+	
 	public Usuario(String n, String a, String c, String d, int t,int id, String encodedPassword, String... roles) {
 		this.nombre = n;
 		this.apellidos = a;
