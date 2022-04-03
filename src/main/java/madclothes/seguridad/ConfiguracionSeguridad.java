@@ -62,4 +62,4 @@ public class ConfiguracionSeguridad extends WebSecurityConfigurerAdapter{
 	}
 }
 
-}
+
