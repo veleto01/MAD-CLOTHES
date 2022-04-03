@@ -31,4 +31,6 @@
 
 - **Funcionalidades del servicio interno**:
 
-     Las funcionalidades del servicio interno están compuestas por distintas funcionalidades como que un usuario puede consultar el stock de un producto, la misma        página mandará correos electrónicos informando a sus usuarios registrados de ofertas, disponibilidad de stock etc. A su vez los usuarios podrán usar la              herramienta valoraciones para dar nota a la ropa.
+     -Enviar correo cuando se registra un usuario
+     -Enviar correo cuando se compra un producto
+     **Link al repositorio del servicio interno** : https://github.com/veleto01/ServicioInterno
