@@ -19,11 +19,15 @@ public class RepositorioDeUsuarios implements UserDetailsService {
 	@Autowired
 	private UsuarioRepository userRepository;
 
-	@Override
+	@Override							//String username
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-		Usuario user = userRepository.findByNombre(username)
-				.orElseThrow(() -> new UsernameNotFoundException("User not found"));
+		Usuario user = userRepository.findByNombre(username);
+				//user.orElseThrow(() -> new UsernameNotFoundException("User not found"));
+				if (user==null) {
+					new UsernameNotFoundException("User not found");
+		}
+			
 
 		List<GrantedAuthority> roles = new ArrayList<>();
 		for (String role : user.getRoles()) {
