@@ -12,7 +12,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import madclothes.entidades.Usuario;
-import madclothes.repositorio.UsuarioRepository;
 
 @Service
 public class RepositorioDeUsuarios implements UserDetailsService {

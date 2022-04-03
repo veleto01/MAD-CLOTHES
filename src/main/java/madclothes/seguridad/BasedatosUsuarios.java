@@ -7,9 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import madclothes.entidades.Usuario;
-import madclothes.repositorio.UsuarioRepository;
 
-//import madclothes.repositorio.UserRepository;
 
 @Component
 public class BasedatosUsuarios {

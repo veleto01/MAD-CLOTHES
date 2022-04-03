@@ -15,7 +15,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 //import es.codeurjc.security.User;
 import madclothes.entidades.Usuario;
-import madclothes.repositorio.UsuarioRepository;
 
 @Controller
 public class webController {

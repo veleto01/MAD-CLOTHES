@@ -36,16 +36,22 @@ public class ConfiguracionSeguridad extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests().antMatchers("/login").permitAll();
 		http.authorizeRequests().antMatchers("/loginerror").permitAll();
 		http.authorizeRequests().antMatchers("/logout").permitAll();
+		http.authorizeRequests().antMatchers("/AtencionCliente").permitAll();
+		http.authorizeRequests().antMatchers("/listaProductos").permitAll();
 
-		// Private pages (all other pages)
-		http.authorizeRequests().antMatchers("/private").hasAnyRole("USER");
-		http.authorizeRequests().antMatchers("/admin").hasAnyRole("ADMIN");
+		// Usuarios
+		http.authorizeRequests().antMatchers("/CarritCompra").hasAnyRole("USER");
+		// Admins
+		http.authorizeRequests().antMatchers("/administrador").hasAnyRole("ADMIN");
+		http.authorizeRequests().antMatchers("/gestionOferta").hasAnyRole("ADMIN");
+		http.authorizeRequests().antMatchers("/gestionProductos").hasAnyRole("ADMIN");
+		http.authorizeRequests().antMatchers("/gestionUsuario").hasAnyRole("ADMIN");
 
 		// Login form
 		http.formLogin().loginPage("/login");
 		http.formLogin().usernameParameter("username");
 		http.formLogin().passwordParameter("password");
-		http.formLogin().defaultSuccessUrl("/private");
+		http.formLogin().defaultSuccessUrl("/");
 		http.formLogin().failureUrl("/loginerror");
 
 		// Logout
@@ -53,11 +59,11 @@ public class ConfiguracionSeguridad extends WebSecurityConfigurerAdapter{
 		http.logout().logoutSuccessUrl("/");
 
 		// Disable CSRF at the moment
-		http.csrf().disable();
+		//http.csrf().disable();
 
 		// Allow H2 console
-		http.authorizeRequests().antMatchers("/h2-console/**").permitAll();
-		http.headers().frameOptions().sameOrigin();
+		//http.authorizeRequests().antMatchers("/h2-console/**").permitAll();
+		//http.headers().frameOptions().sameOrigin();
 
 	}
 }
