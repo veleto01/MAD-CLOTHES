@@ -19,7 +19,7 @@ import madclothes.entidades.Usuario;
 import madclothes.repositorio.CarritoCompraRepository;
 import madclothes.repositorio.ProductoOfertaRepository;
 import madclothes.repositorio.ProductoRepository;
-import madclothes.repositorio.UsuarioRepository;
+import madclothes.seguridad.UsuarioRepository;
 import madclothes.controladores.*;
 
 @Controller

@@ -10,17 +10,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import madclothes.entidades.*;
 import madclothes.repositorio.*;
+import madclothes.seguridad.UsuarioRepository;
 import madclothes.controladores.*;
 
 public class CarritoCompraController {
 
 
-	@Autowired
-	private ProductoRepository productoRepository;
-	@Autowired
-	private CarritoCompraRepository carritoRepository;	
+
 	@Autowired
 	private UsuarioRepository usuarioRepository;	
+	
 	
 	CarritoCompra CarritoCompra;
 	Usuario Usuario;

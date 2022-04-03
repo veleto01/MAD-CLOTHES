@@ -15,7 +15,9 @@ import madclothes.entidades.Producto;
 import madclothes.entidades.Usuario;
 import madclothes.repositorio.CarritoCompraRepository;
 import madclothes.repositorio.ProductoRepository;
-import madclothes.repositorio.UsuarioRepository;
+import madclothes.seguridad.UsuarioRepository;
+
+
 
 @Controller
 public class ControladorDefault {
@@ -24,7 +26,8 @@ public class ControladorDefault {
 	@Autowired
 	private CarritoCompraRepository carritoRepository;	
 	@Autowired
-	private UsuarioRepository usuarioRepository;	
+	private UsuarioRepository usuarioRepository;
+	
 	
 	CarritoCompra CarritoCompra;
 	Usuario Usuario;
