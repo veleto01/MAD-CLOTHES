@@ -32,5 +32,7 @@
 - **Funcionalidades del servicio interno**:
 
      -Enviar correo cuando se registra un usuario
+     
      -Enviar correo cuando se compra un producto
+     
      **Link al repositorio del servicio interno** : https://github.com/veleto01/ServicioInterno
