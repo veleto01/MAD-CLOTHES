@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import madclothes.entidades.*;
 import madclothes.repositorio.*;
-import madclothes.seguridad.UsuarioRepository;
 import madclothes.controladores.*;
 
 public class CarritoCompraController {

@@ -15,7 +15,7 @@ import madclothes.entidades.Producto;
 import madclothes.entidades.Usuario;
 import madclothes.repositorio.CarritoCompraRepository;
 import madclothes.repositorio.ProductoRepository;
-import madclothes.seguridad.UsuarioRepository;
+import madclothes.repositorio.UsuarioRepository;
 
 
 

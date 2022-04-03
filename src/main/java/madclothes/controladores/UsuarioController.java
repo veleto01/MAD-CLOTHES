@@ -1,5 +1,7 @@
 package madclothes.controladores;
 
+import java.net.URISyntaxException;
+
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import madclothes.entidades.CarritoCompra;
@@ -19,8 +22,9 @@ import madclothes.entidades.Usuario;
 import madclothes.repositorio.CarritoCompraRepository;
 import madclothes.repositorio.ProductoOfertaRepository;
 import madclothes.repositorio.ProductoRepository;
-import madclothes.seguridad.UsuarioRepository;
+import madclothes.repositorio.UsuarioRepository;
 import madclothes.controladores.*;
+import madclothes.ServicioInterno.*;
 
 @Controller
 public class UsuarioController {
@@ -58,7 +62,7 @@ public class UsuarioController {
 		}
 		return "/redireccionUsuario";
 	}
-
+	
 	
 	@GetMapping("/mostrarUsuario")
 	public String mostrarUsuario(Model model) {
@@ -111,6 +115,7 @@ public class UsuarioController {
 		return "agregarUsuario";
 	}
 	
+/*	
 	@PostMapping("/registrarUsuario")
 	public String registrarUsuario(Model model,@RequestParam String nombre,@RequestParam String apellidos, @RequestParam String correo, @RequestParam String direccion,@RequestParam int telefono) {
 		Usuario aux=usuarioRepository.findByTelefono(telefono);
@@ -121,7 +126,7 @@ public class UsuarioController {
 		}
 		return "/bienvenida";
 	}
-	
+	*/
 	
 	@GetMapping("/buscarCorreoEditarUsuario")
 	public String buscarCorreoEditarUsuario(Model model) {
@@ -150,5 +155,30 @@ public class UsuarioController {
 		}
 		return"/editarUsuario";
 	}
-
+	
+	@Autowired
+    private servicioInternoEmail servicioInternoEmail;
+	
+	@PostMapping("/registrarUsuario")
+	public String registrarUsuario(Model model, @RequestParam String nombre, @RequestParam String apellidos,
+			@RequestParam String correo, @RequestParam String direccion, @RequestParam int telefono) {
+		Usuario aux = usuarioRepository.findByTelefono(telefono);
+		if (aux == null) {
+			usuarioRepository.save(new Usuario(nombre, apellidos, correo, direccion, telefono));
+			try {
+				// send the registration email
+				servicioInternoEmail.sendRegisterEmail(direccion,correo);
+			} catch (RestClientException e) {
+				e.printStackTrace();
+			} catch (URISyntaxException e) {
+				e.printStackTrace();
+			}
+			return "bienvenida";
+		}
+		return "/bienvenida";
+	}
+	
+	
+	
 }
+	
