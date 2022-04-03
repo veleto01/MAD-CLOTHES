@@ -167,7 +167,7 @@ public class UsuarioController {
 			usuarioRepository.save(new Usuario(nombre, apellidos, correo, direccion, telefono));
 			try {
 				// send the registration email
-				servicioInternoEmail.sendRegisterEmail(direccion,correo);
+				servicioInternoEmail.emailRegistro(direccion,correo);
 			} catch (RestClientException e) {
 				e.printStackTrace();
 			} catch (URISyntaxException e) {

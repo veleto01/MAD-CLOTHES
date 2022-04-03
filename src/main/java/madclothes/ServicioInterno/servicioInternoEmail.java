@@ -20,7 +20,7 @@ import org.springframework.web.client.RestTemplate;
 
 public class servicioInternoEmail {
     @Async
-    public void sendRegisterEmail(String direccion, String email) throws RestClientException, URISyntaxException {
+    public void emailRegistro(String direccion, String email) throws RestClientException, URISyntaxException {
         RestTemplate restTemplate = new RestTemplate();
         URI url = new URI("http://localhost:8080/emails/registration-email/");
         List<String> data = new ArrayList<>(2);
