@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import madclothes.entidades.Usuario;
+import madclothes.repositorio.UsuarioRepository;
 
 @Service
 public class RepositorioDeUsuarios implements UserDetailsService {
@@ -27,8 +28,10 @@ public class RepositorioDeUsuarios implements UserDetailsService {
 				if (user==null) {
 					new UsernameNotFoundException("User not found");
 		}
+		/*Usuario user = userRepository.findByNombre(username)
+				.orElseThrow(() -> new UsernameNotFoundException("User not found"));
 			
-
+*/
 		List<GrantedAuthority> roles = new ArrayList<>();
 		for (String role : user.getRoles()) {
 			roles.add(new SimpleGrantedAuthority("ROLE_" + role));
