@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 Test set: es.codeurjc.helloworldspring.MadclothesPruebaApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.175 s <<< FAILURE! - in es.codeurjc.helloworldspring.MadclothesPruebaApplicationTests
-es.codeurjc.helloworldspring.MadclothesPruebaApplicationTests  Time elapsed: 0.174 s  <<< ERROR!
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.085 s <<< FAILURE! - in es.codeurjc.helloworldspring.MadclothesPruebaApplicationTests
+es.codeurjc.helloworldspring.MadclothesPruebaApplicationTests  Time elapsed: 0.085 s  <<< ERROR!
 java.lang.IllegalStateException: Unable to find a @SpringBootConfiguration, you need to use @ContextConfiguration or @SpringBootTest(classes=...) with your test
 

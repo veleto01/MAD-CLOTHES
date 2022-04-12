@@ -49,8 +49,7 @@ public class UsuarioController {
 	public void init(){
 		usuarioRepository.save(new Usuario("Alejandro","Panizo Jerez","alejandro@gmail.com","Calle Tulipan",6436363));
 		usuarioRepository.save(new Usuario("Mqueda","fdf fsdf","alejandro@sdf.com","Calle Tulipan",12));
-		usuarioRepository.save(new Usuario("ALEX","fdf fsdf","alejandro@sdf.com","Calle Tulipan",passwordEncoder.encode("adminpass"), "USER", "ADMIN"));
-		usuarioRepository.save(new Usuario("JUAN","ASDASD","juand@sdf.com","Calle Tulipan",1, passwordEncoder.encode("pass"), "USER"));
+		usuarioRepository.save(new Usuario("ALEX","fdf fsdf","alejandro@sdf.com","Calle Tulipan",1));
 		carritoRepository.save(new CarritoCompra(usuarioRepository.findByTelefono(1),productoRepository.findByCodigo(1)));
 		usuarioRepository.save(new Usuario("admin",passwordEncoder.encode("admin"),listaRolesAdmin,1234));
 	}
