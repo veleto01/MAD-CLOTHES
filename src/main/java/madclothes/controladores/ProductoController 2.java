@@ -16,7 +16,6 @@ import madclothes.entidades.Producto;
 import madclothes.entidades.Usuario;
 import madclothes.repositorio.ProductoOfertaRepository;
 import madclothes.repositorio.ProductoRepository;
-import madclothes.repositorio.UsuarioRepository;
 import madclothes.controladores.*;
 
 @Controller

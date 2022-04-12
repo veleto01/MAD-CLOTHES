@@ -1,12 +1,10 @@
 package madclothes.controladores;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.net.URISyntaxException;
 
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import madclothes.entidades.CarritoCompra;
@@ -25,6 +24,7 @@ import madclothes.repositorio.ProductoOfertaRepository;
 import madclothes.repositorio.ProductoRepository;
 import madclothes.repositorio.UsuarioRepository;
 import madclothes.controladores.*;
+import madclothes.ServicioInterno.*;
 
 @Controller
 public class UsuarioController {
@@ -37,11 +37,6 @@ public class UsuarioController {
 	@Autowired
 	private ProductoRepository productoRepository;
 	
-	@Autowired
-	private PasswordEncoder passwordEncoder;
-	
-	List<String> listaRolesAdmin=new ArrayList<String>();
-	
 	Usuario UsuarioABuscarEditar;
 	Usuario UsuarioAEliminar;
 	Usuario UsuarioAVer;
@@ -51,7 +46,7 @@ public class UsuarioController {
 		usuarioRepository.save(new Usuario("Mqueda","fdf fsdf","alejandro@sdf.com","Calle Tulipan",12));
 		usuarioRepository.save(new Usuario("ALEX","fdf fsdf","alejandro@sdf.com","Calle Tulipan",1));
 		carritoRepository.save(new CarritoCompra(usuarioRepository.findByTelefono(1),productoRepository.findByCodigo(1)));
-		usuarioRepository.save(new Usuario("admin",passwordEncoder.encode("admin"),listaRolesAdmin,1234));
+		
 	}
 	
 	@GetMapping("/buscarCodigoUsuario")
@@ -67,7 +62,7 @@ public class UsuarioController {
 		}
 		return "/redireccionUsuario";
 	}
-
+	
 	
 	@GetMapping("/mostrarUsuario")
 	public String mostrarUsuario(Model model) {
@@ -120,6 +115,7 @@ public class UsuarioController {
 		return "agregarUsuario";
 	}
 	
+/*	
 	@PostMapping("/registrarUsuario")
 	public String registrarUsuario(Model model,@RequestParam String nombre,@RequestParam String apellidos, @RequestParam String correo, @RequestParam String direccion,@RequestParam int telefono) {
 		Usuario aux=usuarioRepository.findByTelefono(telefono);
@@ -130,7 +126,7 @@ public class UsuarioController {
 		}
 		return "/bienvenida";
 	}
-	
+	*/
 	
 	@GetMapping("/buscarCorreoEditarUsuario")
 	public String buscarCorreoEditarUsuario(Model model) {
@@ -159,5 +155,30 @@ public class UsuarioController {
 		}
 		return"/editarUsuario";
 	}
-
+	
+	@Autowired
+    private servicioInternoEmail servicioInternoEmail;
+	
+	@PostMapping("/registrarUsuario")
+	public String registrarUsuario(Model model, @RequestParam String nombre, @RequestParam String apellidos,
+			@RequestParam String correo, @RequestParam String direccion, @RequestParam int telefono) {
+		Usuario aux = usuarioRepository.findByTelefono(telefono);
+		if (aux == null) {
+			usuarioRepository.save(new Usuario(nombre, apellidos, correo, direccion, telefono));
+			try {
+				// send the registration email
+				servicioInternoEmail.emailRegistro(direccion,correo);
+			} catch (RestClientException e) {
+				e.printStackTrace();
+			} catch (URISyntaxException e) {
+				e.printStackTrace();
+			}
+			return "bienvenida";
+		}
+		return "/bienvenida";
+	}
+	
+	
+	
 }
+	

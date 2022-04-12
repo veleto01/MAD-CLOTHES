@@ -15,12 +15,10 @@ import madclothes.controladores.*;
 public class CarritoCompraController {
 
 
-	@Autowired
-	private ProductoRepository productoRepository;
-	@Autowired
-	private CarritoCompraRepository carritoRepository;	
+
 	@Autowired
 	private UsuarioRepository usuarioRepository;	
+	
 	
 	CarritoCompra CarritoCompra;
 	Usuario Usuario;
