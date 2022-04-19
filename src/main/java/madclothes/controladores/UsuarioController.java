@@ -1,12 +1,8 @@
 package madclothes.controladores;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,21 +33,15 @@ public class UsuarioController {
 	@Autowired
 	private ProductoRepository productoRepository;
 	
-	@Autowired
-	private PasswordEncoder passwordEncoder;
-	
-	List<String> listaRolesAdmin=new ArrayList<String>();
-	
 	Usuario UsuarioABuscarEditar;
 	Usuario UsuarioAEliminar;
 	Usuario UsuarioAVer;
 	@PostConstruct
 	public void init(){
 		usuarioRepository.save(new Usuario("Alejandro","Panizo Jerez","alejandro@gmail.com","Calle Tulipan",6436363));
-		usuarioRepository.save(new Usuario("Mqueda","fdf fsdf","alejandro@sdf.com","Calle Tulipan",12));
-		usuarioRepository.save(new Usuario("ALEX","fdf fsdf","alejandro@sdf.com","Calle Tulipan",1));
+
 		carritoRepository.save(new CarritoCompra(usuarioRepository.findByTelefono(1),productoRepository.findByCodigo(1)));
-		usuarioRepository.save(new Usuario("admin",passwordEncoder.encode("admin"),listaRolesAdmin,1234));
+		
 	}
 	
 	@GetMapping("/buscarCodigoUsuario")

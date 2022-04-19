@@ -12,8 +12,6 @@ import javax.persistence.Id;
 @Entity
 public class Usuario {
 
-	public static final String ROL_ADMIN="ADMIN";
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
@@ -25,11 +23,10 @@ public class Usuario {
 	private String direccion;
 
 	private String passwordHash;
-
+	
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;
-	
-	
+
 	public Usuario(String n, String a, String c, String d, int t) {
 		this.nombre = n;
 		this.apellidos = a;
@@ -45,14 +42,13 @@ public class Usuario {
 		this.telefono = t;
 		this.id=id;
 	}
-	
-	public Usuario(String name, String passwordHash,List<String> roles,int t) {
-		this.nombre = name;
-		this.passwordHash = passwordHash;
-		//this.roles = List.of(roles);
-		this.roles=roles;
-		this.telefono = t;
-	}
+	public Usuario(String name, String passwordHash,int t,String... roles) {
+        this.nombre = name;
+        this.passwordHash = passwordHash;
+        this.telefono = t;
+        this.roles = List.of(roles);
+
+    }
 
 	public int getId() {
 		return id;
@@ -105,19 +101,15 @@ public class Usuario {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-	
-	public String getpasswordHash() {
+	public String getPasswordHash() {
 		return passwordHash;
 	}
-
-	public void setEncodedPassword(String encodedPassword) {
-		this.passwordHash = encodedPassword;
+	public void setPasswordHash(String passwordHash) {
+		this.passwordHash = passwordHash;
 	}
-
 	public List<String> getRoles() {
 		return roles;
 	}
-
 	public void setRoles(List<String> roles) {
 		this.roles = roles;
 	}

@@ -14,8 +14,5 @@ public class MadclothesPruebaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MadclothesPruebaApplication.class, args);
 	}
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder(10, new SecureRandom());
-	}
+
 }

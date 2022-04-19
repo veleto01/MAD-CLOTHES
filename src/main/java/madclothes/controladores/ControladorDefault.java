@@ -1,10 +1,8 @@
 package madclothes.controladores;
 
-
-import javax.servlet.http.HttpServletRequest;
-
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,12 +29,13 @@ public class ControladorDefault {
 	CarritoCompra CarritoCompra;
 	Usuario Usuario;
 	Producto productoaux;
-	
+	/*
 	@GetMapping("/")
 	public String bienvenida(Model model) {
 		model.addAttribute("name", "MADCLOTHES");
+		
 		return "bienvenida";
-	}
+	}*/
 
 	@GetMapping("/AtencionCliente")
 	public String atencionAlCliente(Model model) {
@@ -88,33 +87,8 @@ public class ControladorDefault {
 		return "verCarrito";
 	}
 
-	@GetMapping("/login")
-	public String login() {
-		return "login/login";
-	}
-
-
-	@GetMapping("/loginerror")
-	public String loginerror() {
-		return "login/loginerror";
-	}
-
-	@GetMapping("/private")
-	public String privatePage(Model model, HttpServletRequest request) {
-
-		String name = request.getUserPrincipal().getName();
-		
-		Usuario user = usuarioRepository.findByNombre(name);
-		 if (user==null) {
-             new UsernameNotFoundException("User not found");
- }
-
-		model.addAttribute("username", user.getNombre());		
-		model.addAttribute("admin", request.isUserInRole("ADMIN"));
-		
-		return "login/private";
-	}
-
+	
+	
 	@PostMapping("/borrarProductoCarrito")
 	public String borrarProductoCarrito(Model model,@RequestParam int telefono,@RequestParam int codigo) {
 		

@@ -11,13 +11,21 @@
 	<br>
 	<a href="AtencionCliente"> Atencion al cliente</a>
 	<br>
-	<a href="gestionOferta"> Ofertas</a>
+	{{#admin}}
+	<a href="/gestionOferta"> Ofertas</a>
 	<br>
 	<a href="gestionUsuario"> Gestion de Usuarios</a>
 	<br>
 	<a href="gestionProductos"> Gestion de productos</a>
 	<br>
-	<a href="login">Login</a>
+	{{/admin}}
+	<a href="login">LOGIN</a>
+	
+	<form action="/logout" method="post">
+		<input type="hidden" name="_csrf" value="{{token}}"/>
+		<input type="submit" value="Sign Out" />
+	</form>
+	
 	
 </body>
 
