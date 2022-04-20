@@ -1,0 +1,18 @@
+<html>
+<body>
+	
+	<h1>Listado de todos los productos:</h1>
+	
+	
+	
+	{{#productos}}
+	<a href="/producto/{{-index}}">{{nombre}} {{codigo}} {{precio}} {{unidades}}</a><br>
+	{{/productos}}
+	
+	<br>
+	<a href="agregarProducto">Agregar un producto nuevo</a>
+	<br>
+		<a href="/">Volver a inicio</a>
+
+</body>
+</html>

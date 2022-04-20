@@ -1,0 +1,24 @@
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+<body style="font-size: 300%">
+	<h1>Inserte Usuario</h1>
+	<div class="container" style="with: 400px">
+		<form method="POST" action='/registrarUsuario'>
+			<input type="hidden" name="_csrf" value="{{token}}" /> <label
+				for="nombre">Nombre:</label> <input type="text" name='nombre'>
+			<br> <label for="apellidos">apellidos:</label> <input
+				type="text" name='apellidos'> <br> <label for="correo">correo:</label>
+			<input type="text" name='correo'> <br> <label
+				for="direccion">direccion:</label> <input type="text"
+				name='direccion'> <br> <label for="telefono">telefono:</label>
+			<input type="text" name='telefono'> <br> <label
+				for="Contraseña">Contraseña:</label> <input type="password"
+				name='Contraseña'> <br> <input type='submit'
+				value='Enviar'> <a href="/">Volver a pagina principal</a>
+
+		</form>
+	</div>
+</body>
+</html>
