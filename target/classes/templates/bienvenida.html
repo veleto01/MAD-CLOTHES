@@ -16,10 +16,18 @@
 	<a href="gestionUsuario"> Gestion de Usuarios</a>
 	<br>
 	<a href="gestionProductos"> Gestion de productos</a>
-	<br> {{/admin}}
+	{{/admin}}
+	
+	{{^user}}
+		{{^admin}}
 	<a href="login">Login</a>
+	
 	<br>
+	
 	<a href="agregarUsuario"> Registrarse</a>
+	{{/admin}}
+	{{/user}}
+	
 	<form action="/logout" method="post">
 		<input type="hidden" name="_csrf" value="{{token}}" /> 
 		<input type="submit" value="Sign Out" />

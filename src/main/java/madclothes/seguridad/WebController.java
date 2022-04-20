@@ -13,6 +13,7 @@ public class WebController {
 	@GetMapping("/")
 	public String index(Model model,HttpServletRequest request) {
 		model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		model.addAttribute("user", request.isUserInRole("USER"));
 		return "bienvenida";
 	}
 
