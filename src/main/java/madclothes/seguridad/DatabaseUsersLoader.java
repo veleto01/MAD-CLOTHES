@@ -12,7 +12,7 @@ import madclothes.entidades.*;
 public class DatabaseUsersLoader {
 
     @Autowired
-    private UsuarioRepository userRepository;
+    private WebUserRepository userRepository;
     
     @Autowired
 	private PasswordEncoder passwordEncoder;
@@ -20,7 +20,7 @@ public class DatabaseUsersLoader {
     @PostConstruct
     private void initDatabase() {
     	
-    	userRepository.save(new Usuario("user", passwordEncoder.encode("pass"), 123,"USER"));
-		userRepository.save(new Usuario("admin", passwordEncoder.encode("admin"),12 ,"USER", "ADMIN"));
+    	userRepository.save(new WebUser("user", passwordEncoder.encode("pass"), 123,"USER"));
+		userRepository.save(new WebUser("admin", passwordEncoder.encode("admin"),12 ,"USER", "ADMIN"));
     }
 }

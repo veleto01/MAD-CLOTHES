@@ -1,32 +1,29 @@
 <html>
 <head>
-      <meta charset="UTF-8">   
-  </head>
-<body  style = "font-size:300%" >
+<meta charset="UTF-8">
+</head>
+<body style="font-size: 300%">
 	<h1>Inserte codigo del producto ofertado</h1>
-<div class = "container" style = "with:400px" >
-<form method="POST" action='/OfertaEliminar'>
+	<div class="container" style="with: 400px">
+		<form method="POST" action='/OfertaEliminar'>
+			<input type="hidden" name="_csrf" value="{{token}}" /> <label
+				for="Codigo">Codigo:</label> <input type="text" name='codigo'>
+			<br> <input type='submit' value='Enviar' /> <a href="/">Volver
+				a pagina principal</a>
 
-	<label for="Codigo">Codigo:</label>
-	<input type="text" name='codigo'>
-	<br>
-	
-	<input type='submit' value='Enviar'/>
-	<a href="/">Volver a pagina principal</a>
-
-</form>
-</div>
+		</form>
+	</div>
 </body>
 </html>
 
 
-	
-	
-	
-	
 
 
-	
-	
-	
-	
+
+
+
+
+
+
+
+

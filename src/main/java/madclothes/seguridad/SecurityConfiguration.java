@@ -26,6 +26,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
 		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+		
 	}
 
 	@Override
@@ -41,11 +42,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 		// Usuarios
 		http.authorizeRequests().antMatchers("/CarritoCompra").hasAnyRole("USER");
+		
 		// Admins
 		http.authorizeRequests().antMatchers("/administrador").hasAnyRole("ADMIN");
 		http.authorizeRequests().antMatchers("/gestionOferta").hasAnyRole("ADMIN");
 		http.authorizeRequests().antMatchers("/gestionProductos").hasAnyRole("ADMIN");
 		http.authorizeRequests().antMatchers("/gestionUsuario").hasAnyRole("ADMIN");
+		
 
 		// Login form
 		http.formLogin().loginPage("/login");
@@ -53,8 +56,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.formLogin().passwordParameter("password");
 		http.formLogin().defaultSuccessUrl("/");
 		http.formLogin().failureUrl("/loginerror");
+		
 
 		// Logout
 		http.logout().logoutUrl("/logout");
+		//http.csrf().disable();
 	}
 }

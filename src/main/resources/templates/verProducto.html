@@ -1,6 +1,10 @@
+
+
+
 <html>
 <body>
 <form action='/mostrarProducto' method="GET">
+<input type="hidden" name="_csrf" value="{{token}}" />
 	<h1>Producto</h1>
 		<p>Nombre:{{Nombre}}</p>
 		<br>

@@ -10,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Usuario {
+public class WebUser {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,14 +27,14 @@ public class Usuario {
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;
 
-	public Usuario(String n, String a, String c, String d, int t) {
+	public WebUser(String n, String a, String c, String d, int t) {
 		this.nombre = n;
 		this.apellidos = a;
 		this.correo = c;
 		this.direccion = d;
 		this.telefono = t;
 	}
-	public Usuario(String n, String a, String c, String d, int t,int id) {
+	public WebUser(String n, String a, String c, String d, int t,int id) {
 		this.nombre = n;
 		this.apellidos = a;
 		this.correo = c;
@@ -42,7 +42,7 @@ public class Usuario {
 		this.telefono = t;
 		this.id=id;
 	}
-	public Usuario(String name, String passwordHash,int t,String... roles) {
+	public WebUser(String name, String passwordHash,int t,String... roles) {
         this.nombre = name;
         this.passwordHash = passwordHash;
         this.telefono = t;
@@ -50,6 +50,17 @@ public class Usuario {
 
     }
 
+	public WebUser(String n, String a, String c, String d, int t,String passwordHash,String... roles) {
+		this.nombre = n;
+		this.apellidos = a;
+		this.correo = c;
+		this.direccion = d;
+		this.telefono = t;
+		this.passwordHash = passwordHash;
+		this.roles = List.of(roles);
+	}
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -58,7 +69,7 @@ public class Usuario {
 		this.id = id;
 	}
 
-	public Usuario() {
+	public WebUser() {
 
 	}
 

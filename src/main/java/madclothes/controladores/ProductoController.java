@@ -13,10 +13,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import madclothes.entidades.Oferta;
 import madclothes.entidades.Producto;
-import madclothes.entidades.Usuario;
+import madclothes.entidades.WebUser;
 import madclothes.repositorio.ProductoOfertaRepository;
 import madclothes.repositorio.ProductoRepository;
-import madclothes.repositorio.UsuarioRepository;
+import madclothes.repositorio.WebUserRepository;
 import madclothes.controladores.*;
 
 @Controller

@@ -19,7 +19,7 @@ public class CarritoCompra {
 	private int id;
 	
 	@OneToOne
-	private Usuario usuario;
+	private WebUser usuario;
 	
 	@OneToMany
 	private  List<Producto> listaProductos; 
@@ -29,12 +29,12 @@ public class CarritoCompra {
 		
 	}
 	//POR DEFECTO CUANDO ENCIENDES LA PAGINA
-	public CarritoCompra(Usuario u){
+	public CarritoCompra(WebUser u){
 		this.usuario=u;
 		this.listaProductos = new ArrayList<>();
 	}
 	//FILTRADO POR USUARIO METIENDO UN PRODUCTO EN LA LISTA DEL CARRITO
-	public CarritoCompra(Usuario u,Producto x){
+	public CarritoCompra(WebUser u,Producto x){
 		this.usuario=u;
 		this.listaProductos = new ArrayList<>();
 		this.listaProductos.add(x);
@@ -42,10 +42,10 @@ public class CarritoCompra {
 	
 	
 	
-	public Usuario getUsuario() {
+	public WebUser getUsuario() {
 		return usuario;
 	}
-	public void setUsuario(Usuario usuario) {
+	public void setUsuario(WebUser usuario) {
 		this.usuario = usuario;
 	}
 	

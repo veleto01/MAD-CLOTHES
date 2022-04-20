@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import madclothes.entidades.CarritoCompra;
 import madclothes.entidades.Producto;
-import madclothes.entidades.Usuario;
+import madclothes.entidades.WebUser;
 import madclothes.repositorio.CarritoCompraRepository;
 import madclothes.repositorio.ProductoRepository;
-import madclothes.repositorio.UsuarioRepository;
+import madclothes.repositorio.WebUserRepository;
 
 @Controller
 public class ControladorDefault {
@@ -24,10 +24,10 @@ public class ControladorDefault {
 	@Autowired
 	private CarritoCompraRepository carritoRepository;	
 	@Autowired
-	private UsuarioRepository usuarioRepository;	
+	private WebUserRepository usuarioRepository;	
 	
 	CarritoCompra CarritoCompra;
-	Usuario Usuario;
+	WebUser Usuario;
 	Producto productoaux;
 	/*
 	@GetMapping("/")

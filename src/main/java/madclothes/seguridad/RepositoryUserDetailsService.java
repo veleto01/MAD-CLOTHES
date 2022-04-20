@@ -17,12 +17,12 @@ import madclothes.entidades.*;
 public class RepositoryUserDetailsService implements UserDetailsService {
 
 	@Autowired
-	private UsuarioRepository userRepository;
+	private WebUserRepository userRepository;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-		Usuario user = userRepository.findByNombre(username);
+		WebUser user = userRepository.findByNombre(username);
 		if (user==null) {
             new UsernameNotFoundException("User not found");
 		}

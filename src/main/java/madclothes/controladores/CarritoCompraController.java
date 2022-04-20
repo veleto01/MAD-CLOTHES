@@ -20,10 +20,10 @@ public class CarritoCompraController {
 	@Autowired
 	private CarritoCompraRepository carritoRepository;	
 	@Autowired
-	private UsuarioRepository usuarioRepository;	
+	private WebUserRepository usuarioRepository;	
 	
 	CarritoCompra CarritoCompra;
-	Usuario Usuario;
+	WebUser Usuario;
 	Producto productoaux;
 	
 	@GetMapping("/verCarrito")

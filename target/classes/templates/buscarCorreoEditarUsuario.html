@@ -4,10 +4,10 @@
 </head>
 <body>
 	<form action="/modificarUsuario" method="GET">
-		Ingrese el correo del Usuario para editar: 
-		<input type='text' name='correo' /> 
-		<input type='submit' value=Enviar />
-		
+		<input type="hidden" name="_csrf" value="{{token}}" /> Ingrese el
+		correo del Usuario para editar: <input type='text' name='correo' /> <input
+			type='submit' value=Enviar />
+
 	</form>
 </body>
 </html>
