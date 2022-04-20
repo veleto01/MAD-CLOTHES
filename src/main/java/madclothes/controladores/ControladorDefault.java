@@ -64,7 +64,10 @@ public class ControladorDefault {
 		return "gestionOferta";
 	}
 	
-	
+	@GetMapping("/verCarrito")
+	public String verCarrito(Model model) {
+		return "verCarrito";
+	}
 	
 	
 	@GetMapping("/gestionUsuario")
@@ -81,10 +84,6 @@ public class ControladorDefault {
 	@GetMapping("/agregarProductosCarrito")
 	public String agregarProductosCarrito(Model model) {
 		return "agregarProductosCarrito";
-	}
-	@GetMapping("/verCarrito")
-	public String verCarrito(Model model) {
-		return "verCarrito";
 	}
 
 	

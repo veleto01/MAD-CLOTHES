@@ -26,22 +26,43 @@ public class CarritoCompraController {
 	WebUser Usuario;
 	Producto productoaux;
 	
+	/*@GetMapping("/verCarrito")
+	public String verCarrito(Model model) {
+		return "verCarrito";
+	}*/
+	
 	@GetMapping("/verCarrito")
 	public String verCarrito(Model model) {
+		model.addAttribute("producto", carritoRepository.findAll());
 		return "verCarrito";
 	}
 
-	@GetMapping("/verCarrito")
+	/*@GetMapping("/verCarrito")
 	public String verCarrito1(Model model) {
 		double precio = 0;
-		model.addAttribute("Productos", CarritoCompra.getListaProductos());
+		model.addAttribute("Producto", CarritoCompra.getListaProductos());
 		for (Producto producto : CarritoCompra.getListaProductos()) {
-		model.addAttribute("Producto", producto);
+			model.addAttribute("Producto", producto);
 			precio += producto.getPrecio();
 		}
 		model.addAttribute("Precio Total", precio);
 		return "/bienvenida";
-	}
+	}*/
+	
+	/*@GetMapping("/verCarrito")
+	public String verCarrito1(Model model) {
+
+		String Nombre = productoaux.getNombre();
+		int Codigo = productoaux.getCodigo();
+		int precio = productoaux.getPrecio();
+		int Unidades = productoaux.getUnidades();
+
+		model.addAttribute("Nombre", Nombre);
+		model.addAttribute("Codigo", Codigo);
+		model.addAttribute("Precio", precio);
+		model.addAttribute("Unidades", Unidades);
+		return "verCarrito";
+	}*/
 
 	/*@GetMapping("/CarritoCompra/Borrar")
 	public String borrarCarrito(Model model) {
@@ -76,16 +97,18 @@ public class CarritoCompraController {
 	
 	@PostMapping("/anadirProducto")
 	public String anadirProducto(Model model,@RequestParam int telefono,@RequestParam int codigo) {
-		/*productoaux = productoRepository.findByCodigo(codigo);
+		//
+		productoaux = productoRepository.findByCodigo(codigo);
 		
 		Usuario=usuarioRepository.findByTelefono(telefono);
 		
-		if(carritoRepository.findByUsuario(telefono)==null){
+		if(carritoRepository.findByUsuarioTelefono(telefono)==null){
 		carritoRepository.save(new CarritoCompra(Usuario,productoaux));
 		}else {
 			CarritoCompra.getListaProductos().add(productoaux);
 			carritoRepository.save(CarritoCompra);
-		}*/
+		}
+		//
 		return"/bienvenida";
 		
 	}
