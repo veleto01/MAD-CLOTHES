@@ -125,3 +125,21 @@ Mysql server
 
    Para acceder a la web abrimos el navegador con la direccion https://localhost:8443/
 
+  - **Imágenes proyecto**
+ **INICIO**
+  <img width="259" alt="Captura de pantalla 2022-04-21 a las 11 09 36" src="https://user-images.githubusercontent.com/93671942/164421786-f6654d35-5df8-44f5-b406-1db7c9d3e11c.png">
+ **REGISTRAR USUARIO**
+<img width="606" alt="Captura de pantalla 2022-04-21 a las 11 09 51" src="https://user-images.githubusercontent.com/93671942/164421802-8f5548f9-c256-4be0-b851-2f34cfc3ee67.png">
+ **LOGIN**
+<img width="213" alt="Captura de pantalla 2022-04-21 a las 11 10 03" src="https://user-images.githubusercontent.com/93671942/164421827-3026af51-f451-487c-98d7-39<img width="304" alt="Captura de pantalla 2022-04-21 a las 11 10 16" src="https://user-images.githubusercontent.com/93671942/164421968-19bfec7d-ac31-42b0-9924-71acbebcd276.png">
+d715b6ad55.png">
+ **ATENCIÓN AL CLIENTE**
+<img width="342" alt="Captura de pantalla 2022-04-21 a las 11 10 27" src="https://user-images.githubusercontent.com/93671942/164422000-67a892fa-93c5-45dc-b098-a1ae910e4a67.png">
+ **LISTADO DE TODOS LOS PRODUCTOS**
+<img width="271" alt="Captura de pantalla 2022-04-21 a las 11 11 02" src="https://user-images.githubusercontent.com/93671942/164422048-7349383b-5985-4257-97ce-fa90a090087e.png">
+ **CARRITO DE COMPRA**
+<img width="817" alt="Captura de pantalla 2022-04-21 a las 11 11 09" src="https://user-images.githubusercontent.com/93671942/164422081-72e95207-c791-4ea4-83d9-3d84f2eaacaa.png">
+ **AÑADIR PRODUCTO AL CARRITO**
+<img width="800" alt="Captura de pantalla 2022-04-21 a las 11 11 19" src="https://user-images.githubusercontent.com/93671942/164422099-ea02fcfa-34da-49b1-8c93-9fbae04866a0.png">
+ **BORRAR PRODUCTO**
+<img width="262" alt="Captura de pantalla 2022-04-21 a las 11 11 27" src="https://user-images.githubusercontent.com/93671942/164422109-395197ea-5e37-4c97-a033-b6b5319f30df.png">
