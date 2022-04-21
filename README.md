@@ -28,7 +28,12 @@
   - Producto: Entidad que representa al objeto que se compra, almacena toda su información, categoría de objeto, talla y modelo.
   
   - Usuario: Persona que utiliza la web y de la que tienes registrados los datos recurrentes de comprar como dirección o nombre y su historial de compra.
+  
+ - **Diagrama entidades**
+<img width="1397" alt="Diagrama Entidades E_R" src="https://user-images.githubusercontent.com/93671942/164419848-97ff8c47-8eb6-4a7a-8c19-0c4a1073aff1.png">
 
+ - **Diagrama entidades**
+ 
 - **Funcionalidades del servicio interno**:
 
      Las funcionalidades del servicio interno están compuestas por distintas funcionalidades como que un usuario puede consultar el stock de un producto, la misma        página mandará correos electrónicos informando a sus usuarios registrados de ofertas, disponibilidad de stock etc. A su vez los usuarios podrán usar la              herramienta valoraciones para dar nota a la ropa.
