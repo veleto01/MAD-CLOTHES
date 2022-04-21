@@ -34,71 +34,71 @@
      Las funcionalidades del servicio interno están compuestas por distintas funcionalidades como que un usuario puede consultar el stock de un producto, la misma        página mandará correos electrónicos informando a sus usuarios registrados de ofertas, disponibilidad de stock etc. A su vez los usuarios podrán usar la              herramienta valoraciones para dar nota a la ropa.
 - **https://github.com/veleto01/ServicioInterno**:
      
-Instrucciones de instalacion en VM
+**Instrucciones de instalacion en VM**
 
 Requerimientos preinstalacion: Se presume que el sistema operativo ya esta instalado con virtualbox.
 
-Mysql server JAVA
+**Mysql server JAVA**
 
 Los 2 archivos jar de la aplicación,servidor y servicio interno compilados desde spring boot (run as mavel desde el boton derecho del raton encima de cada proyecto)
 
 Como instalar los componentes si no se tiene instalado mysql server y java.
 Mysql server
 
-•	Abrimos el terminal de ubuntu(boton derecho raton→terminal.)
+- Abrimos el terminal de ubuntu(boton derecho raton→terminal.)
 
-•	Actualizamos los paquetes:
+- Actualizamos los paquetes:
 
 sudo apt update
 
-•	Instalamos mysql server:
+- Instalamos mysql server:
 
 sudo apt install mysql-server
 
-•	Configuramos mysql server:
+- Configuramos mysql server:
 
 sudo mysql_secure_installation
 
-•	1º pregunta [intro]
+- 1º pregunta [intro]
 
-•	2º pregunta contraseña=”root”(sin las comillas).
+- 2º pregunta contraseña=”root”(sin las comillas).
 
-•	3º pregunta y siguientes [intro].
+- 3º pregunta y siguientes [intro].
 
-•	Cambiamos el metodo de auntenticacion de root:
+- Cambiamos el metodo de auntenticacion de root:
 
-sudo mysql
+**sudo mysql**
 
-SELECT user,authentication_string,plugin,host FROM mysql.user;
+**SELECT user,authentication_string,plugin,host FROM mysql.user;**
 
-ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'root';
+**ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'root';**
 
-FLUSH PRIVILEGES;
+**FLUSH PRIVILEGES;**
 
-SELECT user,authentication_string,plugin,host FROM mysql.user;
+**SELECT user,authentication_string,plugin,host FROM mysql.user;**
 
-exit
+**exit**
 
-JAVA
+**JAVA**
 
-•	Actualizamos los paquetes:
+- Actualizamos los paquetes:
 sudo apt update
 
-•	Instalamos java:
+- Instalamos java:
 
 sudo apt install default-jre
 
-•	Verificamos la version de la instalación:
+- Verificamos la version de la instalación:
 
 java -version
 
-•	Completando la instalación.
+- Completando la instalación.
 
 Estos pasos solo debe completarse la primera vez una vez se tiene instalado mysql y java:
 
-mysql -h localhost -u root -p (introducimos root de contraseña).
+**mysql -h localhost -u root -p (introducimos root de contraseña).**
 
-CREATE DATABASE MADCLOTHES;
+**CREATE DATABASE MADCLOTHES;**
 
 exit
 
@@ -108,6 +108,7 @@ Una vez completado lo anterior se recomienda abrirse un editor de texto y crears
 
 
  #!/bin/bash
+ 
  #_*_ENCODING: UTF-8 _*_
 
  
