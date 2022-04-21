@@ -1,54 +1,38 @@
 package madclothes.servicioInterno;
 
-
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.List;
-
-
 import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+import madclothes.entidades.WebUser;
 
 
 
+
+@Service
 public class servicioInternoEmail {
+private static final String MAIL_SERVICE_URL = "http://localhost:8444";
+    public static boolean sendRegisterEmail(WebUser Usuario) {
+        try {
+            email Email = new email(Usuario.getCorreo(), "Registro MADCLOTHES","¡Gracias "+Usuario.getNombre()+" "+Usuario.getApellidos()+" por resgistrarte en MADCLOTHES, disfruta de nuestra tienda :)");
+            HttpEntity<email> httpEntity = new HttpEntity<>(Email);
+            RestTemplate restTemplate = new RestTemplate();
+            ResponseEntity<Void> res =restTemplate.postForEntity(MAIL_SERVICE_URL+"/email", httpEntity, Void.class);
 
-    @Async
-    public void sendRegisterEmail(String direccion, String email) throws RestClientException, URISyntaxException {
-        RestTemplate restTemplate = new RestTemplate();
- 
-        //store the user and its email in an arraylist
-        List<String> data = new ArrayList<>(2);
-        data.add(direccion);
-        data.add(email);
-
-        //code needed to send the arraylist so the rest controller can recibe it on the body
-        HttpEntity<List> requestEntity = getListHttpEntity(data);
-        //sends the information in a post to the Rest
-        restTemplate.postForEntity("http://localhost:8444/email", requestEntity, String.class);
+            if(res.getStatusCode() == HttpStatus.CREATED) {
+                System.out.println("Enviado correctamente");
+                return true;
+            }else{
+                System.out.println("Error enviando:"+res.getStatusCode());
+                return false;
+            }
+        }catch (Exception e) {
+            System.out.println("Error enviando:"+e.getMessage());
+            e.printStackTrace();
+            return false;
+        }
     }
 
-
-
-
-
-    /**
-     * Auxiliar method for packaging the information we need to send to the REST
-     *
-     * @param data information that needs to be sent to the REST
-     * @return an http entity with the information
-     */
-    private HttpEntity<List> getListHttpEntity(List<String> data) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<List> requestEntity = new HttpEntity<>(data, headers);
-        return requestEntity;
-    }
 }

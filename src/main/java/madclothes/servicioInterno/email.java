@@ -7,7 +7,7 @@ public class email {
 	    private String texto;
 	    private String asunto;
 
-	    public email(String destinatario, String mensaje, String asunto) {
+	    public email(String destinatario, String asunto, String mensaje) {
 	    	this.destinatario = destinatario;
 	    	this.origen ="MADCLOTHESemail@gmail.com";
 	    	this.texto = mensaje;
@@ -20,6 +20,7 @@ public class email {
 	    	this.origen = "MADCLOTHESemail@gmail.com";
 	    	this.asunto = asunto;
 	    }
+
 
 		public String getDestinatario() {
 			return destinatario;

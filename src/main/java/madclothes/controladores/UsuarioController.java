@@ -2,6 +2,7 @@ package madclothes.controladores;
 
 import javax.annotation.PostConstruct;
 
+import madclothes.servicioInterno.servicioInternoEmail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,7 @@ import madclothes.repositorio.ProductoOfertaRepository;
 import madclothes.repositorio.ProductoRepository;
 import madclothes.repositorio.WebUserRepository;
 import madclothes.controladores.*;
+import madclothes.servicioInterno.*;
 
 @Controller
 public class UsuarioController {
@@ -114,9 +116,11 @@ public class UsuarioController {
 			@RequestParam String Contraseña) {
 		WebUser aux = usuarioRepository.findByTelefono(telefono);
 		if (aux == null) {
-			usuarioRepository.save(new WebUser(nombre, apellidos, correo, direccion, telefono,
-					passwordEncoder.encode(Contraseña), "USER"));
-
+			usuarioRepository.save(new WebUser(nombre, apellidos, correo, direccion, telefono, passwordEncoder.encode(Contraseña), "USER"));
+			WebUser UsuarioCorreo = usuarioRepository.findByTelefono(telefono);
+			if(servicioInternoEmail.sendRegisterEmail(UsuarioCorreo)){
+				return "bienvenida";
+			}
 			return "bienvenida";
 		}
 		return "bienvenida";
