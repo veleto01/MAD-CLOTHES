@@ -1,0 +1,64 @@
+version: '3.3'
+services:
+  db_MADCLOTHES:
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=David
+      - MYSQL_PASSWORD=chica.2001
+      - MYSQL_DATABASE=db_MADCLOTHES
+    image: mysql:8.0.28-oracle
+    volumes:
+      - ./data/db:/var/lib/mysql
+    networks:
+      - red-madclothes
+
+  ServicioInternoMadclothes1:
+    build:
+      context: .
+      dockerfile: interno.dockerfile.txt
+    networks:
+      - red-madclothes
+
+  Madclothes:
+    build:
+      context: .
+      dockerfile: jar.Dockerfile.txt
+      args:
+        nombreInstancia: Madclothes
+    depends_on:
+      - db_MADCLOTHES
+      - ServicioInternoMadclothes
+    networks:
+      - red-madclothes
+
+  haproxy:
+    build:
+      context: .
+      dockerfile: haproxy.dockerfile.txt
+    depends_on:
+      - db_MADCLOTHES
+      - ServicioInternoMadclothes
+      - Madclothes
+    ports:
+      - 8443:8443
+      - 1935:1935
+    command: -f haproxy.cfg
+    networks:
+      - red-madclothes
+
+  ServicioInternoMadclothes:
+    build:
+      context: .
+      dockerfile: haproxyServicioInterno.dockerfile.txt
+    depends_on:
+      - db_MADCLOTHES
+      - ServicioInternoMadclothes
+    ports:
+      - 1936:1936
+    command: -f haproxySI.cfg
+    networks:
+      - red-madclothes
+
+networks:
+  redalpine-network:
+    driver: bridge

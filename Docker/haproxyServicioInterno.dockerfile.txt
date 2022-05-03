@@ -1,0 +1,2 @@
+FROM haproxy:2.3
+COPY /haproxy/haproxySI.cfg .
