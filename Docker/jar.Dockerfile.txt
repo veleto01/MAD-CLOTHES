@@ -1,0 +1,3 @@
+FROM openjdk:17-jdk-slim
+COPY ./web.jar /Users/davidsanmartin/Desktop/prueba
+ENTRYPOINT ["java", "-jar", "/Users/davidsanmartin/Desktop/prueba/web.jar]
