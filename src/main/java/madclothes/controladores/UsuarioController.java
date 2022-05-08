@@ -4,6 +4,8 @@ import javax.annotation.PostConstruct;
 
 import madclothes.servicioInterno.servicioInternoEmail;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,7 +56,7 @@ public class UsuarioController {
 	public String buscarCodigo(Model model) {
 		return "buscarCodigoUsuario";
 	}
-
+	
 	@PostMapping("/verUsuarioImplementado")
 	public String verUsuarioImplementado(Model model, int telefono) {
 		UsuarioAVer = usuarioRepository.findByTelefono(telefono);
@@ -63,7 +65,7 @@ public class UsuarioController {
 		}
 		return "/redireccionUsuario";
 	}
-
+	@Cacheable("usua")
 	@GetMapping("/mostrarUsuario")
 	public String mostrarUsuario(Model model) {
 
@@ -85,7 +87,7 @@ public class UsuarioController {
 	public String eliminarUsuario(Model model) {
 		return "buscarCorreoEliminarUsuario";
 	}
-
+	@CacheEvict(value = "usua", allEntries=true)
 	@PostMapping("/borrarUsuario")
 	public String borrarUsuario(Model model, @RequestParam int telefono) {
 		WebUser eliminar = usuarioRepository.findByTelefono(telefono);

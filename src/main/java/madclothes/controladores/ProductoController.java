@@ -3,6 +3,8 @@ package madclothes.controladores;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,18 +44,10 @@ public class ProductoController {
 		RepositorioProductos.save(new Producto("Camiseta Adidas", 1, 20, 10));
 		RepositoryOferta.save(new Oferta(0.5));
 
-		/*
-		 * Producto producto_prueba = new Producto("Prueba", 2, 2, 10); Oferta
-		 * oferta_prueba=new Oferta(0.5);
-		 * 
-		 * 
-		 * RepositoryOferta.save(oferta_prueba);
-		 * producto_prueba.setOferta(oferta_prueba);
-		 * RepositorioProductos.save(producto_prueba);
-		 */
+	
 	}
 
-	// FALTA QUE SANMA HAGA EL HTML DE VER TODOS LOS PRODUCTOS
+	
 	@GetMapping("/listadoProductos")
 	public String mostrarProductos(Model model) {
 		model.addAttribute("productos", RepositorioProductos.findAll());
@@ -64,7 +58,8 @@ public class ProductoController {
 	public String eliminarProducto(Model model) {
 		return "buscarCodigoEliminar";
 	}
-
+	
+	@CacheEvict(value = "product", allEntries=true)
 	@PostMapping("/eliminarProductoImplementado")
 	public String eliminarProductoImplementado(Model model, @RequestParam int codigo) {
 		ProductoABuscar = RepositorioProductos.findByCodigo(codigo);
@@ -106,7 +101,8 @@ public class ProductoController {
 		}
 		return "/redireccion";
 	}
-
+	
+	@Cacheable("product")
 	@GetMapping("/mostrarProducto")
 	public String mostrarProducto(Model model) {
 
@@ -181,14 +177,14 @@ public class ProductoController {
 		}
 		return "/bienvenida";
 	}
-	
+	@Cacheable("ofert")
 	@GetMapping("/verOfertas")
 	public String mostrarOfertas(Model model) {
 		model.addAttribute("ofertas", RepositoryOferta.findAll());
 		return "verOfertas";
 	}
 
-
+	@CacheEvict(value = "ofert", allEntries=true)
 	@GetMapping("/eliminarOferta")
 	public String eliminarOferta(Model model) {
 		return "eliminarOferta";
