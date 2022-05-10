@@ -144,7 +144,7 @@ d715b6ad55.png">
 
 <img width="262" alt="Captura de pantalla 2022-04-21 a las 11 11 27" src="https://user-images.githubusercontent.com/93671942/164422109-395197ea-5e37-4c97-a033-b6b5319f30df.png">
 
-Diagrama Final
+**Diagrama Final**
 
 <img width="690" alt="Captura de pantalla 2022-05-10 a las 12 20 34" src="https://user-images.githubusercontent.com/93671942/167607276-67ee2591-8ae0-4927-9523-31d545e34995.png">
 
