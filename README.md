@@ -147,3 +147,28 @@ d715b6ad55.png">
 Diagrama Final
 "https://user-images.githubusercontent.com/98469786/167462347-cb8b945c-3058-443b-8aea-ecbe46c27890.png"
 
+ ## Haproxy
+  #### - Cargamos el contenedor
+  	docker pull haproxytech/haproxy-alpine
+  #### - Creamos el Docker file
+  	FROM haproxytech/haproxy-alpine:2.0
+  	COPY haproxy.cfg /usr/local/etc/haproxy/haproxy.cfg
+  #### - Contruimos el contenedor, en la ruta que queramos
+  	docker build -t {nombre-contenedor} {ruta}
+  #### - Copiamos el archivo haproxy.cfg a la ruta de nuestro contenedor y lo editamos
+  	cp /usr/local/etc/haproxy/haproxy.cfg {ruta}
+  #### - Archivo haproxy.cfg
+  
+  
+  #### - Por ultimo arrancamos el contenedor con los puertos correspondientes para la entrada al haproxy, que tenemos especificados en el archivo de configuración
+  	docker run --name haproxy -d -v {ruta-archivo.cfg}:/usr/local/etc/haproxy:ro -p 33060:33060 -p 80:80 -p 8443:8443 -p 8404:8404 -p 443:443 haproxytech/haproxy-alpine:2.4
+### Crear las webs y los servicios internos
+#### Creamos un archivo Dockerfile para cada jar, en el mismo directorio
+	FROM adoptopenjdk/openjdk11:latest
+	RUN sh -c 'mkdir /usr/app'
+	COPY ./{archivo-jar} /usr/app
+	ENTRYPOINT ["java", "-jar", "/usr/app/{archivo-jar}"]
+#### Construimos el contenedor
+	docker build -t david/web1:tag .
+#### Iniciamos el contenedor especificando los puertos que queremos parchear
+	docker run --name web1 -d -p 8001:80 david/web1:1.1.9
