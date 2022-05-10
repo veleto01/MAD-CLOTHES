@@ -158,6 +158,8 @@ Diagrama Final
   #### - Copiamos el archivo haproxy.cfg a la ruta de nuestro contenedor y lo editamos
   	cp /usr/local/etc/haproxy/haproxy.cfg {ruta}
   #### - Archivo haproxy.cfg
+  <img width="546" alt="Captura de pantalla 2022-05-10 a las 12 19 10" src="https://user-images.githubusercontent.com/93671942/167607042-986a3f8f-4f97-47f2-95bc-aa2d545eb60e.png">
+
   global
 
 defaults
