@@ -163,21 +163,21 @@ Diagrama Final
 defaults
 
 listen stats
-        -mode http
-                --bind *:8404
-                --stats enable
-                --stats refresh 5s
-                --stats show-legends
-                --stats uri /stats
+- mode http
+-- bind *:8404
+-- stats enable
+-- stats refresh 5s
+-- stats show-legends
+-- stats uri /stats
 
 frontend sok-front-end
-                bind *:80
-                bind *:443 ssl crt /usr/local/etc/haproxy/mydomain.pem
-        acl https ssl_fc
-                http-request set-header X-Forwarded-Proto http  if !https
-        http-request set-header X-Forwarded-Proto https if https
-                mode http
-                default_backend sok-backend-end
+- bind *:80
+- bind *:443 ssl crt /usr/local/etc/haproxy/mydomain.pem
+-- acl https ssl_fc
+-- http-request set-header X-Forwarded-Proto http  if !https
+-- http-request set-header X-Forwarded-Proto https if https
+-- mode http
+-- default_backend sok-backend-end
 
 backend sok-backend-end
         mode http
