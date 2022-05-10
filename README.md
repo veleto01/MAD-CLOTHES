@@ -160,6 +160,7 @@ Diagrama Final
   	cp /usr/local/etc/haproxy/haproxy.cfg {ruta}
   #### - Archivo haproxy.cfg
   <img width="546" alt="Captura de pantalla 2022-05-10 a las 12 19 10" src="https://user-images.githubusercontent.com/93671942/167607042-986a3f8f-4f97-47f2-95bc-aa2d545eb60e.png">
+  
   #### - Por ultimo arrancamos el contenedor con los puertos correspondientes para la entrada al haproxy, que tenemos especificados en el archivo de configuración
   	docker run --name haproxy -d -v {ruta-archivo.cfg}:/usr/local/etc/haproxy:ro -p 33060:33060 -p 80:80 -p 8443:8443 -p 8404:8404 -p 443:443 haproxytech/haproxy-alpine:2.4
 ### Crear las webs y los servicios internos
