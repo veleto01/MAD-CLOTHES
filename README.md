@@ -163,12 +163,12 @@ Diagrama Final
 defaults
 
 listen stats
-        mode http
-                bind *:8404
-                stats enable
-                stats refresh 5s
-                stats show-legends
-                stats uri /stats
+        -mode http
+                --bind *:8404
+                --stats enable
+                --stats refresh 5s
+                --stats show-legends
+                --stats uri /stats
 
 frontend sok-front-end
                 bind *:80
