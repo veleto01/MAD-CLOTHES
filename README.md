@@ -158,8 +158,33 @@ Diagrama Final
   #### - Copiamos el archivo haproxy.cfg a la ruta de nuestro contenedor y lo editamos
   	cp /usr/local/etc/haproxy/haproxy.cfg {ruta}
   #### - Archivo haproxy.cfg
-  
-  
+  global
+
+defaults
+
+listen stats
+        mode http
+                bind *:8404
+                stats enable
+                stats refresh 5s
+                stats show-legends
+                stats uri /stats
+
+frontend sok-front-end
+                bind *:80
+                bind *:443 ssl crt /usr/local/etc/haproxy/mydomain.pem
+        acl https ssl_fc
+                http-request set-header X-Forwarded-Proto http  if !https
+        http-request set-header X-Forwarded-Proto https if https
+                mode http
+                default_backend sok-backend-end
+
+backend sok-backend-end
+        mode http
+                balance roundrobin
+                server web1 217.71.204.219:8005 check
+                server web2 217.71.204.219:8006 check
+		
   #### - Por ultimo arrancamos el contenedor con los puertos correspondientes para la entrada al haproxy, que tenemos especificados en el archivo de configuración
   	docker run --name haproxy -d -v {ruta-archivo.cfg}:/usr/local/etc/haproxy:ro -p 33060:33060 -p 80:80 -p 8443:8443 -p 8404:8404 -p 443:443 haproxytech/haproxy-alpine:2.4
 ### Crear las webs y los servicios internos
