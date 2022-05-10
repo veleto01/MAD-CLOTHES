@@ -145,7 +145,8 @@ d715b6ad55.png">
 <img width="262" alt="Captura de pantalla 2022-04-21 a las 11 11 27" src="https://user-images.githubusercontent.com/93671942/164422109-395197ea-5e37-4c97-a033-b6b5319f30df.png">
 
 Diagrama Final
-"https://user-images.githubusercontent.com/98469786/167462347-cb8b945c-3058-443b-8aea-ecbe46c27890.png"
+<img width="690" alt="Captura de pantalla 2022-05-10 a las 12 20 34" src="https://user-images.githubusercontent.com/93671942/167607276-67ee2591-8ae0-4927-9523-31d545e34995.png">
+
 
  ## Haproxy
   #### - Cargamos el contenedor
@@ -159,34 +160,6 @@ Diagrama Final
   	cp /usr/local/etc/haproxy/haproxy.cfg {ruta}
   #### - Archivo haproxy.cfg
   <img width="546" alt="Captura de pantalla 2022-05-10 a las 12 19 10" src="https://user-images.githubusercontent.com/93671942/167607042-986a3f8f-4f97-47f2-95bc-aa2d545eb60e.png">
-
-  global
-
-defaults
-
-listen stats
-- mode http
--- bind *:8404
--- stats enable
--- stats refresh 5s
--- stats show-legends
--- stats uri /stats
-
-frontend sok-front-end
-- bind *:80
-- bind *:443 ssl crt /usr/local/etc/haproxy/mydomain.pem
--- acl https ssl_fc
--- http-request set-header X-Forwarded-Proto http  if !https
--- http-request set-header X-Forwarded-Proto https if https
--- mode http
--- default_backend sok-backend-end
-
-backend sok-backend-end
-        mode http
-                balance roundrobin
-                server web1 217.71.204.219:8005 check
-                server web2 217.71.204.219:8006 check
-		
   #### - Por ultimo arrancamos el contenedor con los puertos correspondientes para la entrada al haproxy, que tenemos especificados en el archivo de configuración
   	docker run --name haproxy -d -v {ruta-archivo.cfg}:/usr/local/etc/haproxy:ro -p 33060:33060 -p 80:80 -p 8443:8443 -p 8404:8404 -p 443:443 haproxytech/haproxy-alpine:2.4
 ### Crear las webs y los servicios internos
